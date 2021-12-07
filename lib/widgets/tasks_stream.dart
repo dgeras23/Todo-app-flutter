@@ -28,13 +28,13 @@ class TasksStream extends StatelessWidget {
               String id = tasks[index].id;
               return Note(
                 key: ValueKey(tasks[index]),
-                isTrue: tasks[index].data()['isChecked'],
-                title: tasks[index].data()['text'],
+                isTrue: tasks[index].get('isChecked'),
+                title: tasks[index].get('text'),
                 onCardTap: () {
                   showModalBottomSheet(
                       context: context,
                       builder: (context) {
-                        taskController.text = tasks[index].data()['text'];
+                        taskController.text = tasks[index].get('text');
                         return Container(
                           color: Colors.white,
                           child: Padding(
@@ -74,7 +74,7 @@ class TasksStream extends StatelessWidget {
                       .delete();
                 },
                 onCheckboxChanged: (value) {
-                  bool myValue = !tasks[index].data()['isChecked'];
+                  bool myValue = !tasks[index].get('isChecked');
                   firestore
                       .collection('users')
                       .doc(auth.currentUser.uid)
